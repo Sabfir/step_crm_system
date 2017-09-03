@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.OrderBy;
+
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/addresses")
 public class AddressController {
     private final AddressService addressService;
+    private final Class<Address> addressClass = Address.class;
 
     @Autowired
     public AddressController(AddressService addressService) {

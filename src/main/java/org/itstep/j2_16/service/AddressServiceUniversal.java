@@ -16,8 +16,7 @@ public class AddressServiceUniversal implements AddressService {
     }
 
     @Override
-    public List<Address> getAll() {
-        return addressDao.getAll();
+    public List<Address> getAll() { return addressDao.getAll();
     }
 
     @Override

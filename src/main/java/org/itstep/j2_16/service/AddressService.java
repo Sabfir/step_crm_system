@@ -5,7 +5,9 @@ import org.itstep.j2_16.entity.Address;
 
 public interface AddressService {
 
-    List<Address> getAll();
+    default List<Address> getAll() {
+        return getAll();
+    }
 
     Address save(Address address);
 }
