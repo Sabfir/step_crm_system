@@ -1,6 +1,5 @@
 package org.itstep.j2_16.dao;
 
-
 import org.itstep.j2_16.entity.ProductCategory;
 import java.util.List;
 
@@ -13,5 +12,4 @@ public interface ProductCategoryDao {
     ProductCategory update(ProductCategory productCategory);
 
     ProductCategory getById(long id);
-
 }

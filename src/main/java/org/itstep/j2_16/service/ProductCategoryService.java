@@ -1,6 +1,5 @@
 package org.itstep.j2_16.service;
 
-
 import org.itstep.j2_16.entity.ProductCategory;
 import java.util.List;
 
@@ -13,5 +12,4 @@ public interface ProductCategoryService {
     ProductCategory update(ProductCategory productCategory);
 
     ProductCategory getById(long id);
-
 }

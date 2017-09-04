@@ -11,12 +11,10 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class ProductCategory {
-
     @Id
     @GeneratedValue
     private long id;
     @Column
     private String name;
     private String description;
-
 }

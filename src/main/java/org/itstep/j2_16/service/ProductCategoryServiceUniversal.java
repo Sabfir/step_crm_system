@@ -4,7 +4,6 @@ import org.itstep.j2_16.dao.ProductCategoryDao;
 import org.itstep.j2_16.entity.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -35,5 +34,4 @@ public class ProductCategoryServiceUniversal implements ProductCategoryService {
     public ProductCategory getById(long id) {
         return productCategoryDao.getById(id);
     }
-
 }
