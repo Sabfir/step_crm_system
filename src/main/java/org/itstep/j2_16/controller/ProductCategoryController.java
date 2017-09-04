@@ -27,7 +27,17 @@ public class ProductCategoryController {
     }
 
     @PostMapping
+    public ResponseEntity<?> getByIdProductCategory(long id){
+        return new ResponseEntity<>(productCategoryServise.getById(id), OK);
+    }
+
+    @PostMapping
     public ResponseEntity<?> createProductCategories(@RequestBody ProductCategory productCategory) {
         return new ResponseEntity<>(productCategoryServise.save(productCategory), OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> updateProductCategories(@RequestBody ProductCategory productCategory){
+        return new ResponseEntity<>(productCategoryServise.update(productCategory), OK);
     }
 }

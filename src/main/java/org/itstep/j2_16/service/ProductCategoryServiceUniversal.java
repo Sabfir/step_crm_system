@@ -21,6 +21,11 @@ public class ProductCategoryServiceUniversal implements ProductCategoryService {
     }
 
     @Override
+    public ProductCategory getById(long id) {
+        return productCategoryDao.getById(id);
+    }
+
+    @Override
     public ProductCategory save(ProductCategory productCategory) {
         return productCategoryDao.save(productCategory);
     }
@@ -28,10 +33,5 @@ public class ProductCategoryServiceUniversal implements ProductCategoryService {
     @Override
     public ProductCategory update(ProductCategory productCategory) {
         return productCategoryDao.update(productCategory);
-    }
-
-    @Override
-    public ProductCategory getById(long id) {
-        return productCategoryDao.getById(id);
     }
 }

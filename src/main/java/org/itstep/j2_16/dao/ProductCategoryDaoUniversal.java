@@ -11,11 +11,11 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class ProductCategoryDaoUniversal implements ProductCategoryDao{
+public class ProductCategoryDaoUniversal implements ProductCategoryDao {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public ProductCategoryDaoUniversal (SessionFactory sessionFactory){
+    public ProductCategoryDaoUniversal (SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

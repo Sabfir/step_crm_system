@@ -7,9 +7,9 @@ public interface ProductCategoryDao {
 
     List<ProductCategory> getAll();
 
+    ProductCategory getById(long id);
+
     ProductCategory save(ProductCategory productCategory);
 
     ProductCategory update(ProductCategory productCategory);
-
-    ProductCategory getById(long id);
 }
