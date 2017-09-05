@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+import static java.lang.String.format;
+
 @Service
 public class ProductCategoryServiceUniversal implements ProductCategoryService {
     private ProductCategoryDao productCategoryDao;
@@ -31,7 +33,14 @@ public class ProductCategoryServiceUniversal implements ProductCategoryService {
     }
 
     @Override
-    public ProductCategory update(ProductCategory productCategory) {
-        return productCategoryDao.update(productCategory);
+    public ProductCategory update(long id, ProductCategory productCategory) {
+        if (getById(id) == null) {
+            throw new RuntimeException(format("Product category by id %s not found", id));
+        }
+
+        productCategory.setId(id);
+        productCategoryDao.update(productCategory);
+
+        return productCategory;
     }
 }

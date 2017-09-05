@@ -11,5 +11,5 @@ public interface ProductCategoryDao {
 
     ProductCategory save(ProductCategory productCategory);
 
-    ProductCategory update(ProductCategory productCategory);
+    void update(ProductCategory productCategory);
 }

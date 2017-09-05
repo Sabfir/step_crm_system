@@ -5,9 +5,12 @@ import org.itstep.j2_16.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -26,8 +29,8 @@ public class ProductCategoryController {
         return new ResponseEntity<>(productCategoryServise.getAll(), OK);
     }
 
-    @PostMapping
-    public ResponseEntity<?> getProductCategory(long id){
+    @GetMapping ("/{id}")
+    public ResponseEntity<?> getProductCategory(@PathVariable long id){
         return new ResponseEntity<>(productCategoryServise.getById(id), OK);
     }
 
@@ -36,8 +39,8 @@ public class ProductCategoryController {
         return new ResponseEntity<>(productCategoryServise.save(productCategory), OK);
     }
 
-    @PostMapping
-    public ResponseEntity<?> updateProductCategory(@RequestBody ProductCategory productCategory){
-        return new ResponseEntity<>(productCategoryServise.update(productCategory), OK);
+    @PutMapping ("/{id}")
+    public ResponseEntity<?> updateProductCategory(@PathVariable long id, @RequestBody ProductCategory productCategory){
+        return new ResponseEntity<>(productCategoryServise.update(id, productCategory), OK);
     }
 }

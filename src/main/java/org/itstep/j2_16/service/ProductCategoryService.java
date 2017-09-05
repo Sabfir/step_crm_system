@@ -11,5 +11,5 @@ public interface ProductCategoryService {
 
     ProductCategory save(ProductCategory productCategory);
 
-    ProductCategory update(ProductCategory productCategory);
+    ProductCategory update(long id, ProductCategory productCategory);
 }

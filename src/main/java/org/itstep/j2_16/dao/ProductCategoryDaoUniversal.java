@@ -41,7 +41,7 @@ public class ProductCategoryDaoUniversal implements ProductCategoryDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        ProductCategory productCategory = (ProductCategory) session.byId("id");
+        ProductCategory productCategory = session.get(ProductCategory.class, id);
 
         session.getTransaction().commit();
         session.close();
@@ -63,7 +63,7 @@ public class ProductCategoryDaoUniversal implements ProductCategoryDao {
     }
 
     @Override
-    public ProductCategory update(ProductCategory productCategory) {
+    public void update(ProductCategory productCategory) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -71,7 +71,5 @@ public class ProductCategoryDaoUniversal implements ProductCategoryDao {
 
         session.getTransaction().commit();
         session.close();
-
-        return productCategory;
     }
 }
