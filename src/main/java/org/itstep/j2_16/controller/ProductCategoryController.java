@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/product-category")
+@RequestMapping("/product-categories")
 public class ProductCategoryController {
     private final ProductCategoryService productCategoryServise;
 
@@ -22,22 +22,22 @@ public class ProductCategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getProductCategories() {
+    public ResponseEntity<?> getAllProductCategories() {
         return new ResponseEntity<>(productCategoryServise.getAll(), OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> getByIdProductCategory(long id){
+    public ResponseEntity<?> getProductCategory(long id){
         return new ResponseEntity<>(productCategoryServise.getById(id), OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> createProductCategories(@RequestBody ProductCategory productCategory) {
+    public ResponseEntity<?> createProductCategory(@RequestBody ProductCategory productCategory) {
         return new ResponseEntity<>(productCategoryServise.save(productCategory), OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> updateProductCategories(@RequestBody ProductCategory productCategory){
+    public ResponseEntity<?> updateProductCategory(@RequestBody ProductCategory productCategory){
         return new ResponseEntity<>(productCategoryServise.update(productCategory), OK);
     }
 }
