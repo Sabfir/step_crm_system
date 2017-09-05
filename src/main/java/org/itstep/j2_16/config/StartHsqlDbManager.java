@@ -2,7 +2,6 @@ package org.itstep.j2_16.config;
 
 import org.hsqldb.util.DatabaseManagerSwing;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.PostConstruct;
 
 @Service
