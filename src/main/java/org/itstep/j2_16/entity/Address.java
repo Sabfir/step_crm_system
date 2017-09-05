@@ -1,7 +1,6 @@
 package org.itstep.j2_16.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @Data
