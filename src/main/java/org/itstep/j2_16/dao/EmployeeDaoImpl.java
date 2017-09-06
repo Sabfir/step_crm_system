@@ -3,7 +3,6 @@ package org.itstep.j2_16.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.itstep.j2_16.entity.Employee;
-import org.itstep.j2_16.entity.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import javax.persistence.criteria.CriteriaBuilder;

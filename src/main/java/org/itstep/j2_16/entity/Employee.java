@@ -18,7 +18,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String sex;
-    private int age;
+    private Integer age;
     private String position;
-    private double salary;
+    private Float salary;
 }

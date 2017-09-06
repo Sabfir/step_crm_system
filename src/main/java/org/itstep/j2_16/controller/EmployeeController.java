@@ -25,7 +25,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllEmployee() {
+    public ResponseEntity<?> getAllEmployees() {
         return  new ResponseEntity<>(employeeServise.getAll(), OK);
     }
 
@@ -35,8 +35,8 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createEmployee(@RequestBody Employee productCategory) {
-        return new ResponseEntity<>(employeeServise.save(productCategory), OK);
+    public ResponseEntity<?> createEmployee(@RequestBody Employee employee) {
+        return new ResponseEntity<>(employeeServise.save(employee), OK);
     }
 
     @PutMapping("/{id}")
