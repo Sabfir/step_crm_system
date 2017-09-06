@@ -1,51 +1,52 @@
 package org.itstep.j2_16.dao;
 
-import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.itstep.j2_16.entity.Address;
+import org.itstep.j2_16.entity.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
+
 @Repository
-public class AddressDaoUniversal implements AddressDao {
+public class OrderItemDaoImpl implements OrderItemDao {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public AddressDaoUniversal(SessionFactory sessionFactory) {
+    public OrderItemDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public List<Address> getAll() {
+    public List<OrderItem> getAll() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Address> query = builder.createQuery(Address.class);
-        Root<Address> variableRoot = query.from(Address.class);
+        CriteriaQuery<OrderItem> query = builder.createQuery(OrderItem.class);
+        Root<OrderItem> variableRoot = query.from(OrderItem.class);
         query.select(variableRoot);
-        List<Address> addresses = session.createQuery(query).getResultList();
+        List<OrderItem> orders = session.createQuery(query).getResultList();
 
         session.getTransaction().commit();
         session.close();
 
-        return addresses;
+        return orders;
     }
 
     @Override
-    public Address save(Address address) {
+    public OrderItem save(OrderItem orderItem) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Address savedAddress = (Address) session.merge(address);
+        OrderItem savedOrderItem = (OrderItem) session.merge(orderItem);
 
         session.getTransaction().commit();
         session.close();
 
-        return savedAddress;
+        return savedOrderItem;
     }
 }

@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddressServiceUniversal implements AddressService {
+public class AddressServiceImpl implements AddressService {
     private AddressDao addressDao;
 
     @Autowired
-    public AddressServiceUniversal(AddressDao addressDao) {
+    public AddressServiceImpl(AddressDao addressDao) {
         this.addressDao = addressDao;
     }
 

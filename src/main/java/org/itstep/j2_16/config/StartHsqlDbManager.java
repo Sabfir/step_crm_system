@@ -13,9 +13,8 @@ import javax.annotation.PostConstruct;
 public class StartHsqlDbManager {
 
     @PostConstruct
-    public static void startDBManager() throws SQLException {
-     DriverManager.getConnection("jdbc:mysql://localhost/address_crud","root", "root");
-//        DatabaseManagerSwing.main(
-//                new String[]{"--url", "jdbc:hsqldb:mem:testdb", "--user", "sa", "--password", "sa"});
+    public static void startDBManager() {
+        DatabaseManagerSwing.main(
+                new String[]{"--url", "jdbc:hsqldb:mem:testdb", "--user", "sa", "--password", "sa"});
     }
 }
