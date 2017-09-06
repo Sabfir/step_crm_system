@@ -12,6 +12,8 @@ import org.hibernate.cfg.Environment;
 import org.itstep.j2_16.entity.Address;
 import org.itstep.j2_16.entity.OrderDocument;
 import org.itstep.j2_16.entity.OrderItem;
+import org.itstep.j2_16.entity.Product;
+import org.itstep.j2_16.entity.ProductCategory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -60,6 +62,8 @@ public class HibernateConfig {
                 sources.addAnnotatedClass(Address.class);
                 sources.addAnnotatedClass(OrderItem.class);
                 sources.addAnnotatedClass(OrderDocument.class);
+                sources.addAnnotatedClass(Product.class);
+                sources.addAnnotatedClass(ProductCategory.class);
 
                 // Create Metadata
                 Metadata metadata = sources.getMetadataBuilder().build();

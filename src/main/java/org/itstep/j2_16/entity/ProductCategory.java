@@ -6,24 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
+@Entity
 @Data
 @NoArgsConstructor
-@Entity
-public class Address {
+public class ProductCategory {
     @Id
     @GeneratedValue
     private long id;
-    @Column(name = "country")
-    private String country;
-    private String region;
-    private String district;
-    private String city;
-    private String street;
-    private String house;
-    private String appartment;
+    @Column
+    private String name;
     private String description;
-    @Transient
-    private String other;
 }
