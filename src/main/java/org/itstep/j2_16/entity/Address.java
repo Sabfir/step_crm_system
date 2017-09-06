@@ -15,7 +15,6 @@ public class Address {
     @Id
     @GeneratedValue
     private long id;
-    @Column(name = "country")
     private String country;
     private String region;
     private String district;
