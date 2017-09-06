@@ -21,13 +21,16 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @GetMapping
-    public ResponseEntity<?> getAllAddresses() {
-        return new ResponseEntity<>(addressService.getAll(), OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getByIdAdress(@PathVariable long id){
+        return new ResponseEntity<>(productServise.getById(id), OK);
     }
 
     @PostMapping
     public ResponseEntity<?> createAddress(@RequestBody Address address) {
         return new ResponseEntity<>(addressService.save(address), OK);
     }
-}
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateAddresses(@PathVariable long id, @RequestBody Product product) {
+        return new ResponseEntity<>(productServise.update(id, address), OK);
+    }

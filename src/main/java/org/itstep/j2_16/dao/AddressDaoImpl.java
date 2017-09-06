@@ -37,6 +37,16 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
+    public Product getById(long id) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Address address = session.get(Address.class, id);
+        session.getTransaction().commit();
+        session.close();
+        return address;
+    }
+
+    @Override
     public Address save(Address address) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -47,5 +57,14 @@ public class AddressDaoImpl implements AddressDao {
         session.close();
 
         return savedAddress;
+    }
+
+    @Override
+    public void update(Address address) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(address);
+        session.getTransaction().commit();
+        session.close();
     }
 }
