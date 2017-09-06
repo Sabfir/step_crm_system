@@ -17,23 +17,23 @@ import static javax.persistence.FetchType.EAGER;
 @Entity
 @Data
 @NoArgsConstructor
-public class Order {
+public class OrderDocument {
     @Id
     @GeneratedValue
     private long id;
     private LocalDateTime orderDate;
-    @OneToMany(fetch = EAGER, mappedBy = "order")
+    @OneToMany(fetch = EAGER, mappedBy = "orderDocument")
     private List<OrderItem> items = new ArrayList<>();
-    @Transient
-    @Setter(AccessLevel.PRIVATE)
-    private Float totalSum;
+//    @Transient
+//    @Setter(AccessLevel.PRIVATE)
+//    private Float totalSum;
     private String description;
 
-    public float getTotalSum() {
-        return items.stream()
-                .map(OrderItem::getSum)
-                .filter(Objects::nonNull)
-                .reduce((a, b) -> a + b)
-                .orElse(0f);
-    }
+//    public float getTotalSum() {
+//        return items.stream()
+//                .map(OrderItem::getSum)
+//                .filter(Objects::nonNull)
+//                .reduce((a, b) -> a + b)
+//                .orElse(0f);
+//    }
 }

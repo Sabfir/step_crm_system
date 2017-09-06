@@ -1,8 +1,6 @@
 package org.itstep.j2_16.controller;
 
-import org.itstep.j2_16.entity.Address;
-import org.itstep.j2_16.entity.Order;
-import org.itstep.j2_16.service.AddressService;
+import org.itstep.j2_16.entity.OrderDocument;
 import org.itstep.j2_16.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +24,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createAddress(@RequestBody Order order) {
+    public ResponseEntity<?> createAddress(@RequestBody OrderDocument order) {
         return new ResponseEntity<>(orderService.save(order), OK);
     }
 }

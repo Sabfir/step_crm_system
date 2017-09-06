@@ -1,12 +1,12 @@
 package org.itstep.j2_16.service;
 
-import org.itstep.j2_16.entity.Order;
+import org.itstep.j2_16.entity.OrderDocument;
 
 import java.util.List;
 
 public interface OrderService {
 
-    List<Order> getAll();
+    List<OrderDocument> getAll();
 
-    Order save(Order order);
+    OrderDocument save(OrderDocument order);
 }

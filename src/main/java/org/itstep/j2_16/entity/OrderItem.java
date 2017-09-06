@@ -19,26 +19,26 @@ public class OrderItem {
     @GeneratedValue
     private long id;
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    @JoinColumn(name = "orderdocument_id", nullable = false)
+    private OrderDocument orderDocument;
     private String item;
     private Float quantity;
     private Float price;
-    @Setter(AccessLevel.PRIVATE)
-    private Float sum;
+//    @Setter(AccessLevel.PRIVATE)
+//    private Float sum;
     private String description;
 
-    public void setQuantity(float quantity) {
-        this.quantity = quantity;
-        calculateSum();
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-        calculateSum();
-    }
-
-    private void calculateSum() {
-        sum = round(quantity * price, 2);
-    }
+//    public void setQuantity(float quantity) {
+//        this.quantity = quantity;
+//        calculateSum();
+//    }
+//
+//    public void setPrice(float price) {
+//        this.price = price;
+//        calculateSum();
+//    }
+//
+//    private void calculateSum() {
+//        sum = round(quantity * price, 2);
+//    }
 }

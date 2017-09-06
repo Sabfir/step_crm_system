@@ -1,7 +1,7 @@
 package org.itstep.j2_16.service;
 
 import org.itstep.j2_16.dao.OrderDao;
-import org.itstep.j2_16.entity.Order;
+import org.itstep.j2_16.entity.OrderDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +17,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAll() {
+    public List<OrderDocument> getAll() {
         return orderDao.getAll();
     }
 
     @Override
-    public Order save(Order order) {
+    public OrderDocument save(OrderDocument order) {
         return orderDao.save(order);
     }
 }
