@@ -9,11 +9,11 @@ import java.util.List;
 import static java.lang.String.format;
 
 @Service
-public class ProductCategoryServiceUniversal implements ProductCategoryService {
+public class ProductCategoryServiceImpl implements ProductCategoryService {
     private ProductCategoryDao productCategoryDao;
 
     @Autowired
-    public ProductCategoryServiceUniversal(ProductCategoryDao productCategoryDao){
+    public ProductCategoryServiceImpl(ProductCategoryDao productCategoryDao) {
         this.productCategoryDao = productCategoryDao;
     }
 

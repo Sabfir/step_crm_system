@@ -1,8 +1,6 @@
 package org.itstep.j2_16.service;
 
-import org.itstep.j2_16.dao.OrderDao;
 import org.itstep.j2_16.dao.OrderItemDao;
-import org.itstep.j2_16.entity.Order;
 import org.itstep.j2_16.entity.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
