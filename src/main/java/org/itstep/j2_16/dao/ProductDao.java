@@ -3,7 +3,6 @@ package org.itstep.j2_16.dao;
 import org.itstep.j2_16.entity.Product;
 import java.util.List;
 
-
 public interface ProductDao {
 
     List<Product> getAll();
