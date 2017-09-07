@@ -4,11 +4,7 @@ import org.itstep.j2_16.entity.Address;
 import org.itstep.j2_16.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.OrderBy;
 
@@ -35,6 +31,8 @@ public class AddressController {
         return new ResponseEntity<>(addressService.save(address), OK);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAddresses(@PathVariable long id, @RequestBody Product product) {
+    public ResponseEntity<?> updateAddresses(@PathVariable long id, @RequestBody Address address) {
         return new ResponseEntity<>(addressService.update(id, address), OK);
     }
+}
+
