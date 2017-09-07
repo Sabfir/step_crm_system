@@ -11,6 +11,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.itstep.j2_16.entity.Address;
 import org.itstep.j2_16.entity.Employee;
+import org.itstep.j2_16.entity.Order;
+import org.itstep.j2_16.entity.OrderItem;
+import org.itstep.j2_16.entity.Product;
 import org.itstep.j2_16.entity.ProductCategory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,7 +49,7 @@ public class HibernateConfig {
 
                 settings.put(Environment.SHOW_SQL, "false");
                 settings.put(Environment.FORMAT_SQL, "true");
-                settings.put(Environment.HBM2DDL_AUTO, "create");
+                settings.put(Environment.HBM2DDL_AUTO, "update");
 
                 // Apply settings
                 registryBuilder.applySettings(settings);
@@ -58,6 +61,9 @@ public class HibernateConfig {
                 MetadataSources sources = new MetadataSources(registry);
                 // Add annotated class (mappings)
                 sources.addAnnotatedClass(Address.class);
+                sources.addAnnotatedClass(OrderItem.class);
+                sources.addAnnotatedClass(Order.class);
+                sources.addAnnotatedClass(Product.class);
                 sources.addAnnotatedClass(ProductCategory.class);
                 sources.addAnnotatedClass(Employee.class);
 

@@ -1,7 +1,7 @@
 package org.itstep.j2_16.controller;
 
-import org.itstep.j2_16.entity.Address;
-import org.itstep.j2_16.service.AddressService;
+import org.itstep.j2_16.entity.Order;
+import org.itstep.j2_16.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/addresses")
-public class AddressController {
-    private final AddressService addressService;
+@RequestMapping("/orders")
+public class OrderController {
+    private final OrderService orderService;
 
     @Autowired
-    public AddressController(AddressService addressService) {
-        this.addressService = addressService;
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllAddresses() {
-        return new ResponseEntity<>(addressService.getAll(), OK);
+    public ResponseEntity<?> getAllOrders() {
+        return new ResponseEntity<>(orderService.getAll(), OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> createAddress(@RequestBody Address address) {
-        return new ResponseEntity<>(addressService.save(address), OK);
+    public ResponseEntity<?> createAddress(@RequestBody Order order) {
+        return new ResponseEntity<>(orderService.save(order), OK);
     }
 }
