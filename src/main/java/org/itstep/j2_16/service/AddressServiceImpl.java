@@ -6,6 +6,8 @@ import org.itstep.j2_16.entity.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static java.lang.String.*;
+
 @Service
 public class AddressServiceImpl implements AddressService {
     private AddressDao addressDao;

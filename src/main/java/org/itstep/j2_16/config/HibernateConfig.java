@@ -3,16 +3,13 @@ package org.itstep.j2_16.config;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.intellij.openapi.updateSettings.impl.Product;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
-import org.itstep.j2_16.entity.Address;
-import org.itstep.j2_16.entity.Order;
-import org.itstep.j2_16.entity.OrderItem;
+import org.itstep.j2_16.entity.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
