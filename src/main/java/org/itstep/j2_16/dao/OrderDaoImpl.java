@@ -3,6 +3,7 @@ package org.itstep.j2_16.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.itstep.j2_16.entity.Order;
+import org.itstep.j2_16.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

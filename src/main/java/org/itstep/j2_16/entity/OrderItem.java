@@ -1,14 +1,17 @@
 package org.itstep.j2_16.entity;
 
-import lombok.AccessLevel;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.itstep.j2_16.util.FormatterUtil;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import static javax.persistence.FetchType.EAGER;
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 import static org.itstep.j2_16.util.FormatterUtil.round;
 
 @Entity
@@ -19,26 +22,35 @@ public class OrderItem {
     @GeneratedValue
     private long id;
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id")
     private Order order;
-    private String item;
+    private String product;
     private Float quantity;
     private Float price;
-    @Setter(AccessLevel.PRIVATE)
-    private Float sum;
+    @JsonProperty(access = READ_ONLY)
+    private Float value;
     private String description;
+
+    @JsonGetter("order")
+    public long getOrderForDto() {
+        return order.getId();
+    }
 
     public void setQuantity(float quantity) {
         this.quantity = quantity;
-        calculateSum();
+        calculateValue();
     }
 
     public void setPrice(float price) {
         this.price = price;
-        calculateSum();
+        calculateValue();
     }
 
-    private void calculateSum() {
-        sum = round(quantity * price, 2);
+    private void calculateValue() {
+        if (quantity == null || price == null) {
+            value = 0f;
+        } else {
+            value = round(quantity * price, 2);
+        }
     }
 }
