@@ -1,12 +1,13 @@
 package org.itstep.j2_16.dao;
 
-import org.itstep.j2_16.entity.OrderDocument;
+import org.itstep.j2_16.entity.Order;
+import org.itstep.j2_16.entity.Order;
 
 import java.util.List;
 
 public interface OrderDao {
 
-    List<OrderDocument> getAll();
+    List<Order> getAll();
 
-    OrderDocument save(OrderDocument order);
+    Order save(Order order);
 }

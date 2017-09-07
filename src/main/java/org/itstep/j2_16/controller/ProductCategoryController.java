@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
@@ -30,7 +30,7 @@ public class ProductCategoryController {
     }
 
     @GetMapping ("/{id}")
-    public ResponseEntity<?> getProductCategory(@PathVariable long id){
+    public ResponseEntity<?> getProductCategory(@PathVariable long id) {
         return new ResponseEntity<>(productCategoryServise.getById(id), OK);
     }
 
@@ -40,7 +40,8 @@ public class ProductCategoryController {
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<?> updateProductCategory(@PathVariable long id, @RequestBody ProductCategory productCategory){
+    public ResponseEntity<?> updateProductCategory(@PathVariable long id,
+                                                   @RequestBody ProductCategory productCategory) {
         return new ResponseEntity<>(productCategoryServise.update(id, productCategory), OK);
     }
 }

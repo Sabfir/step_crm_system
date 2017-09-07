@@ -2,7 +2,8 @@ package org.itstep.j2_16.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.itstep.j2_16.entity.OrderDocument;
+import org.itstep.j2_16.entity.Order;
+import org.itstep.j2_16.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,15 +22,15 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<OrderDocument> getAll() {
+    public List<Order> getAll() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<OrderDocument> query = builder.createQuery(OrderDocument.class);
-        Root<OrderDocument> variableRoot = query.from(OrderDocument.class);
+        CriteriaQuery<Order> query = builder.createQuery(Order.class);
+        Root<Order> variableRoot = query.from(Order.class);
         query.select(variableRoot);
-        List<OrderDocument> orders = session.createQuery(query).getResultList();
+        List<Order> orders = session.createQuery(query).getResultList();
 
         session.getTransaction().commit();
         session.close();
@@ -38,11 +39,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public OrderDocument save(OrderDocument order) {
+    public Order save(Order order) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        OrderDocument savedOrder = (OrderDocument) session.merge(order);
+        Order savedOrder = (Order) session.merge(order);
 
         session.getTransaction().commit();
         session.close();

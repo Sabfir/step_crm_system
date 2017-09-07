@@ -10,7 +10,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.itstep.j2_16.entity.Address;
-import org.itstep.j2_16.entity.OrderDocument;
+import org.itstep.j2_16.entity.Order;
+import org.itstep.j2_16.entity.Order;
 import org.itstep.j2_16.entity.OrderItem;
 import org.itstep.j2_16.entity.Product;
 import org.itstep.j2_16.entity.ProductCategory;
@@ -48,7 +49,7 @@ public class HibernateConfig {
 
                 settings.put(Environment.SHOW_SQL, "false");
                 settings.put(Environment.FORMAT_SQL, "true");
-                settings.put(Environment.HBM2DDL_AUTO, "create");
+                settings.put(Environment.HBM2DDL_AUTO, "update");
 
                 // Apply settings
                 registryBuilder.applySettings(settings);
@@ -61,7 +62,7 @@ public class HibernateConfig {
                 // Add annotated class (mappings)
                 sources.addAnnotatedClass(Address.class);
                 sources.addAnnotatedClass(OrderItem.class);
-                sources.addAnnotatedClass(OrderDocument.class);
+                sources.addAnnotatedClass(Order.class);
                 sources.addAnnotatedClass(Product.class);
                 sources.addAnnotatedClass(ProductCategory.class);
 
