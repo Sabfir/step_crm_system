@@ -23,7 +23,7 @@ public class AddressController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getByIdAdress(@PathVariable long id){
-        return new ResponseEntity<>(productServise.getById(id), OK);
+        return new ResponseEntity<>(addressService.getById(id), OK);
     }
 
     @PostMapping
@@ -32,5 +32,5 @@ public class AddressController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<?> updateAddresses(@PathVariable long id, @RequestBody Product product) {
-        return new ResponseEntity<>(productServise.update(id, address), OK);
+        return new ResponseEntity<>(addressService.update(id, address), OK);
     }
