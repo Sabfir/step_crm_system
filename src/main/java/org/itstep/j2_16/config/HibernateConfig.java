@@ -11,7 +11,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.itstep.j2_16.entity.Address;
 import org.itstep.j2_16.entity.Order;
-import org.itstep.j2_16.entity.Order;
 import org.itstep.j2_16.entity.OrderItem;
 import org.itstep.j2_16.entity.Product;
 import org.itstep.j2_16.entity.ProductCategory;
