@@ -14,7 +14,6 @@ public class Employee {
     @Id
     @GeneratedValue
     private long id;
-    @Column
     private String firstName;
     private String lastName;
     private String sex;
