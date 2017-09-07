@@ -9,9 +9,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
-import org.itstep.j2_16.entity.Address;
-import org.itstep.j2_16.entity.Product;
-import org.itstep.j2_16.entity.ProductCategory;
+import org.itstep.j2_16.entity.Client;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -57,9 +55,7 @@ public class HibernateConfig {
                 // Create MetadataSources
                 MetadataSources sources = new MetadataSources(registry);
                 // Add annotated class (mappings)
-                sources.addAnnotatedClass(Address.class);
-                sources.addAnnotatedClass(Product.class);
-                sources.addAnnotatedClass(ProductCategory.class);
+                sources.addAnnotatedClass(Client.class);
 
                 // Create Metadata
                 Metadata metadata = sources.getMetadataBuilder().build();
