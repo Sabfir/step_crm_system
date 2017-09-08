@@ -1,12 +1,14 @@
 package org.itstep.j2_16.service;
 
 import org.itstep.j2_16.dao.ProductCategoryDao;
+import org.itstep.j2_16.entity.Order;
 import org.itstep.j2_16.entity.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static java.lang.String.format;
+import static java.time.LocalDateTime.now;
 
 @Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
@@ -29,6 +31,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public ProductCategory save(ProductCategory productCategory) {
+        fillProductCategoryBeforeSaving(productCategory);
         return productCategoryDao.save(productCategory);
     }
 
@@ -42,5 +45,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         productCategoryDao.update(productCategory);
 
         return productCategory;
+    }
+
+    private void fillProductCategoryBeforeSaving(ProductCategory productCategory) {
+        productCategory.getProductItems().forEach(pi -> pi.setProductCategory(productCategory));
     }
 }
