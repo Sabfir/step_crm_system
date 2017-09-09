@@ -13,7 +13,6 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/addresses")
 public class AddressController {
     private final AddressService addressService;
-
     @Autowired
     public AddressController(AddressService addressService) {
         this.addressService = addressService;
