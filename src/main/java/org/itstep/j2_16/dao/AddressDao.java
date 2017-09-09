@@ -5,8 +5,6 @@ import org.itstep.j2_16.entity.Address;
 
 public interface AddressDao {
 
-    List<Address> getAll();
-
     Address getById(long id);
 
     Address save(Address address);

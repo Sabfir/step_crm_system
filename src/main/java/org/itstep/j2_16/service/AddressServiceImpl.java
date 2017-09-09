@@ -18,9 +18,6 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<Address> getAll() { return addressDao.getAll(); }
-
-    @Override
     public Address getById(long id) {
         return addressDao.getById(id);
     }
@@ -32,8 +29,8 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address update(long id, Address address) {
-        Address foundAddresss = getById(id);
-        if (foundAddresss == null) {
+        Address foundAddress = getById(id);
+        if (foundAddress == null) {
             throw new RuntimeException(format("Address by %s not found", id));
         }
 

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.OrderBy;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -14,7 +13,6 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/addresses")
 public class AddressController {
     private final AddressService addressService;
-    private final Class<Address> addressClass = Address.class;
 
     @Autowired
     public AddressController(AddressService addressService) {
@@ -22,7 +20,7 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getByIdAdress(@PathVariable long id){
+    public ResponseEntity<?> getAddress(@PathVariable long id){
         return new ResponseEntity<>(addressService.getById(id), OK);
     }
 
