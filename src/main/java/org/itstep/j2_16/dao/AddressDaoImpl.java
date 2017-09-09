@@ -20,20 +20,13 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public List<Address> getAll() {
+    public Address getById(long id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Address> query = builder.createQuery(Address.class);
-        Root<Address> variableRoot = query.from(Address.class);
-        query.select(variableRoot);
-        List<Address> addresses = session.createQuery(query).getResultList();
-
+        Address address = session.get(Address.class, id);
         session.getTransaction().commit();
         session.close();
-
-        return addresses;
+        return address;
     }
 
     @Override
@@ -47,5 +40,14 @@ public class AddressDaoImpl implements AddressDao {
         session.close();
 
         return savedAddress;
+    }
+
+    @Override
+    public void update(Address address) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(address);
+        session.getTransaction().commit();
+        session.close();
     }
 }
