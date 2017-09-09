@@ -29,11 +29,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order save(Order order) {
         log.info("Creating order");
-        fillOrderBeforeSaving(order);
+        fillBeforeSaving(order);
         return orderDao.save(order);
     }
 
-    private void fillOrderBeforeSaving(Order order) {
+    @Override
+    public void fillBeforeSaving(Order order) {
         order.setCreated(now());
         order.getOrderItems().forEach(orderItem -> orderItem.setOrder(order));
     }
