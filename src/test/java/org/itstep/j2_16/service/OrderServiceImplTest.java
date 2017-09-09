@@ -30,7 +30,6 @@ public class OrderServiceImplTest {
         // when
         orderService.fillBeforeSaving(order);
 
-
         // than
         LocalDateTime dateEnd = now();
         String message = format("Date of creation should be before %s and %s", dateStart, dateEnd);
