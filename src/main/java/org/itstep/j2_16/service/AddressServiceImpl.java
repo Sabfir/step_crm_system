@@ -1,12 +1,12 @@
 package org.itstep.j2_16.service;
 
-import java.util.List;
+
 import org.itstep.j2_16.dao.AddressDao;
 import org.itstep.j2_16.entity.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static java.lang.String.*;
+import static java.lang.String.format;
 
 @Service
 public class AddressServiceImpl implements AddressService {
