@@ -2,6 +2,7 @@ package org.itstep.j2_16.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -33,7 +34,7 @@ public class Order {
     @JsonFormat(shape = STRING, pattern = DATE_TIME_PATTERN)
     private LocalDateTime created;
     @OneToMany(fetch = EAGER, cascade = ALL, mappedBy = "order")
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItems = new ArrayList<>();
     @JsonProperty(access = READ_ONLY)
     private Float totalValue;
     private String description;
@@ -44,5 +45,9 @@ public class Order {
                 .filter(Objects::nonNull)
                 .reduce((a, b) -> a + b)
                 .orElse(0f);
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
     }
 }
