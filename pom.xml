@@ -40,6 +40,12 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-core.version}</version>
         </dependency>
+        <!-- spring dependency -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>4.3.10.RELEASE</version>
+            </dependency>
         <!-- javax.servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>

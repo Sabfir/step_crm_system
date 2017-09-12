@@ -2,7 +2,7 @@ package org.itstep.j2_16.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.itstep.j2_16.entity.ProductCategory;
+import org.itstep.j2_16.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,65 +11,55 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class ProductCategoryDaoUniversal implements ProductCategoryDao {
+public class ClientDaoUniversal implements ClientDao {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public ProductCategoryDaoUniversal (SessionFactory sessionFactory) {
+    public ClientDaoUniversal(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public List<ProductCategory> getAll() {
+    public List<Client> getAll() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<ProductCategory> query = builder.createQuery(ProductCategory.class);
-        Root<ProductCategory> variableRoot = query.from(ProductCategory.class);
+        CriteriaQuery<Client> query = builder.createQuery(Client.class);
+        Root<Client> variableRoot = query.from(Client.class);
         query.select(variableRoot);
-        List<ProductCategory> productCategories = session.createQuery(query).getResultList();
-
+        List<Client> client = session.createQuery(query).getResultList();
         session.getTransaction().commit();
         session.close();
-
-        return productCategories;
+        return client;
     }
 
     @Override
-    public ProductCategory getById(long id) {
+    public Client getById(long id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
-        ProductCategory productCategory = session.get(ProductCategory.class, id);
-
+        Client client = session.get(Client.class, id);
         session.getTransaction().commit();
         session.close();
-
-        return productCategory;
+        return client;
     }
 
     @Override
-    public ProductCategory save(ProductCategory productCategory) {
+    public Client save(Client client) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
-        ProductCategory savedProductCategory = (ProductCategory)session.merge(productCategory);
-
+        Client savedClient = (Client)session.merge(client);
         session.getTransaction().commit();
         session.close();
-
-        return savedProductCategory;
+        return savedClient;
     }
 
     @Override
-    public void update(ProductCategory productCategory) {
+    public void update(Client client) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
-        session.update(productCategory);
-
+        session.update(client);
         session.getTransaction().commit();
         session.close();
     }
+
 }
