@@ -12,4 +12,6 @@ public interface EmployeeService {
     Employee save(Employee employee);
 
     Employee update(long id, Employee employee);
+
+    public float calculateYearlySalary(Employee employee);
 }
