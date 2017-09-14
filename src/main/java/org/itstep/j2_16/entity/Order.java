@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +27,7 @@ import static org.itstep.j2_16.constraint.RegexPattern.DATE_TIME_PATTERN;
 @Table(name = "order_document")
 @Data
 @NoArgsConstructor
+@ToString(exclude = "orderItems")
 public class Order {
     @Id
     @GeneratedValue
