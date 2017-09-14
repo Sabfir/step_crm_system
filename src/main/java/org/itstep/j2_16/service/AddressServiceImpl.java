@@ -6,6 +6,9 @@ import org.itstep.j2_16.entity.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.String.format;
 
 @Service
@@ -38,5 +41,14 @@ public class AddressServiceImpl implements AddressService {
         addressDao.update(address);
 
         return address;
+    }
+
+    public static boolean ifNotNull(String s) {
+    Address address = new Address();
+    address.setCountry(s);
+    if (address.getCountry().equals("")){
+        return false;
+    }
+    return true;
     }
 }
