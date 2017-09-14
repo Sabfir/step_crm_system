@@ -1,10 +1,15 @@
 package org.itstep.j2_16.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hamcrest.CoreMatchers;
+import org.itstep.j2_16.dao.OrderDao;
 import org.itstep.j2_16.entity.Order;
 import org.itstep.j2_16.entity.OrderItem;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import static java.lang.String.format;
 import static java.time.LocalDateTime.now;
@@ -16,27 +21,55 @@ import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.junit.Assert.assertThat;
 
 public class OrderServiceImplTest {
-    private OrderService orderService = new OrderServiceImpl(null);
-
+    //private OrderService orderService = new OrderServiceImpl(null);
+    OrderDao orderDaoMoc = Mockito.mock(OrderDao.class);
+    //private OrderService orderService = Mockito.mock(OrderService.class);
+    private OrderService orderService = new OrderServiceImpl(orderDaoMoc);
     @Test
-    public void fillBeforeSaving() throws Exception {
-        // given
+    public void save(){
+        // geven
         Order order = new Order();
-        order.addOrderItem(new OrderItem());
-        order.addOrderItem(new OrderItem());
+        List<OrderItem> orderItems= new ArrayList<>();
+        orderItems.add(new OrderItem());
+        orderItems.add(new OrderItem());
+        order.setOrderItems(orderItems);
 
         LocalDateTime dateStart = now();
 
+        Mockito.when(orderDaoMoc.save(order)).thenReturn(order);
+
         // when
-        orderService.fillBeforeSaving(order);
+        orderService.save(order);
 
-        // than
         LocalDateTime dateEnd = now();
-        String message = format("Date of creation should be before %s and %s", dateStart, dateEnd);
-        assertThat(message, order.getCreated(), sameOrAfter(dateStart));
-        assertThat(message, order.getCreated(), sameOrBefore(dateEnd));
+        //then
 
-        message = "Every item should have order filled";
-        assertThat(message, order.getOrderItems(), everyItem(hasProperty("order", equalTo(order))));
+        assertThat(order.getCreated(), sameOrAfter(dateStart));
+        assertThat(order.getCreated(), sameOrBefore(dateEnd));
+
+        Mockito.verify(orderDaoMoc, Mockito.times(1)).save(order);
+
     }
+
+//    @Test
+//    public void fillBeforeSaving() throws Exception {
+//        // given
+//        Order order = new Order();
+//        order.addOrderItem(new OrderItem());
+//        order.addOrderItem(new OrderItem());
+//
+//        LocalDateTime dateStart = now();
+//
+//        // when
+//        orderService.fillBeforeSaving(order);
+//
+//        // than
+//        LocalDateTime dateEnd = now();
+//        String message = format("Date of creation should be before %s and %s", dateStart, dateEnd);
+//        assertThat(message, order.getCreated(), sameOrAfter(dateStart));
+//        assertThat(message, order.getCreated(), sameOrBefore(dateEnd));
+//
+//        message = "Every item should have order filled";
+//        assertThat(message, order.getOrderItems(), everyItem(hasProperty("order", equalTo(order))));
+//    }
 }

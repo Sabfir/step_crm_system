@@ -19,7 +19,8 @@ public class Address {
     private String district;
     private String city;
     private String street;
-    private String house;
+    //private String house;
+    private Integer house;
     private String appartment;
     private String description;
     @Transient
