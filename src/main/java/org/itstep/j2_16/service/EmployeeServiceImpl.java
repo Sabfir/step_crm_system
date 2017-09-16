@@ -44,9 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public float calculateYearlySalary(Employee employee) {
-        float yearlySalary = 0;
-        yearlySalary = employee.getSalary() * 12;
-        return yearlySalary;
+    public float calculateAnnualSalary(Employee employee) {
+        return employee.getSalary() * 12;
     }
 }

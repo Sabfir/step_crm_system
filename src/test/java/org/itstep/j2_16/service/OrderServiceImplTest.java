@@ -44,14 +44,11 @@ public class OrderServiceImplTest {
         LocalDateTime dateEnd = now();
 
         // then
-
         assertThat(order.getCreated(), sameOrAfter(dateStart));
         assertThat(order.getCreated(), sameOrBefore(dateEnd));
 
         Mockito.verify(orderDaoMock, Mockito.times(1)).save(order);
-
     }
-
 
 //    @Test
 //    public void fillBeforeSaving() throws Exception {

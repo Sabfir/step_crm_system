@@ -13,5 +13,5 @@ public interface EmployeeService {
 
     Employee update(long id, Employee employee);
 
-    public float calculateYearlySalary(Employee employee);
+    public float calculateAnnualSalary(Employee employee);
 }

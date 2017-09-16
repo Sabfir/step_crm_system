@@ -29,7 +29,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order save(Order order) {
         log.info("Creating order");
-//        fillBeforeSaving(order);
         order.setCreated(now());
         order.getOrderItems().forEach(orderItem -> orderItem.setOrder(order));
         return orderDao.save(order);
