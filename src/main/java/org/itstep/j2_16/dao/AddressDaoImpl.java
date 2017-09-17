@@ -1,6 +1,5 @@
 package org.itstep.j2_16.dao;
 
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.itstep.j2_16.entity.Address;
@@ -19,32 +18,18 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public Address getById(long id) {
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        Address address = session.get(Address.class, id);
-        session.getTransaction().commit();
-        session.close();
-        return address;
+        return session.get(Address.class, id);
     }
 
     @Override
     public Address save(Address address) {
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
-
-        Address savedAddress = (Address) session.merge(address);
-
-        session.getTransaction().commit();
-        session.close();
-
-        return savedAddress;
+        return  (Address) session.merge(address);
     }
 
     @Override
     public void update(Address address) {
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
         session.update(address);
-        session.getTransaction().commit();
-        session.close();
     }
 }

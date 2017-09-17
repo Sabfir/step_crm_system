@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
-        <spring-core.version>4.3.9.RELEASE</spring-core.version>
+        <springframework.version>4.3.9.RELEASE</springframework.version>
         <hibernate-version>5.2.6.Final</hibernate-version>
         <common-lang3-version>3.0</common-lang3-version>
         <hsqldb.version>2.3.2</hsqldb.version>
@@ -27,19 +27,25 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>${spring-core.version}</version>
+            <version>${springframework.version}</version>
         </dependency>
         <!-- spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${spring-core.version}</version>
+            <version>${springframework.version}</version>
         </dependency>
         <!-- spring-webmvc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${spring-core.version}</version>
+            <version>${springframework.version}</version>
+        </dependency>
+        <!-- Spring ORM -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
         <!-- javax.servlet -->
         <dependency>
@@ -47,6 +53,12 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- javax.transaction -->
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
+            <version>1.2</version>
         </dependency>
         <!-- Hibernate -->
         <dependency>

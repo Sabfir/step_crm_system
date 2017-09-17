@@ -1,91 +1,74 @@
 package org.itstep.j2_16.config;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Environment;
-import org.itstep.j2_16.entity.Address;
-import org.itstep.j2_16.entity.Employee;
-import org.itstep.j2_16.entity.Order;
-import org.itstep.j2_16.entity.OrderItem;
-import org.itstep.j2_16.entity.Product;
-import org.itstep.j2_16.entity.ProductCategory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
+@EnableTransactionManagement
+@ComponentScan("org.itstep.j2_16")
+@PropertySource(value = {"classpath:application.properties"})
+@Slf4j
 public class HibernateConfig {
-    private static StandardServiceRegistry registry;
-    private static SessionFactory sessionFactory;
+    private static final String PACKAGE_TO_SCAN = "org.itstep.j2_16.entity";
+    private Environment environment;
+
+    @Autowired
+    public HibernateConfig(Environment environment) {
+        this.environment = environment;
+    }
 
     @Bean(name = "sessionFactory")
-    public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
-            try {
-                // Create registry builder
-                StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder();
-
-                // Hibernate settings equivalent to hibernate.cfg.xml's properties
-                Map<String, String> settings = new HashMap<>();
-
-                 //mysql
-                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/crm");
-                settings.put(Environment.USER, "root");
-                settings.put(Environment.PASS, "root");
-                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
-
-//                 hsqldb
-//                settings.put(Environment.DRIVER, "org.hsqldb.jdbcDriver");
-//                settings.put(Environment.DIALECT, "org.hibernate.dialect.HSQLDialect");
-//                settings.put(Environment.URL, "jdbc:hsqldb:mem:testdb");
-//                settings.put(Environment.USER, "sa");
-//                settings.put(Environment.PASS, "sa");
-
-                settings.put(Environment.SHOW_SQL, "false");
-                settings.put(Environment.FORMAT_SQL, "true");
-                settings.put(Environment.HBM2DDL_AUTO, "update");
-
-                // Apply settings
-                registryBuilder.applySettings(settings);
-
-                // Create registry
-                registry = registryBuilder.build();
-
-                // Create MetadataSources
-                MetadataSources sources = new MetadataSources(registry);
-                // Add annotated class (mappings)
-                sources.addAnnotatedClass(Address.class);
-                sources.addAnnotatedClass(OrderItem.class);
-                sources.addAnnotatedClass(Order.class);
-                sources.addAnnotatedClass(Product.class);
-                sources.addAnnotatedClass(ProductCategory.class);
-                sources.addAnnotatedClass(Employee.class);
-
-                // Create Metadata
-                Metadata metadata = sources.getMetadataBuilder().build();
-
-                // Create SessionFactory
-                sessionFactory = metadata.getSessionFactoryBuilder().build();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                if (registry != null) {
-                    StandardServiceRegistryBuilder.destroy(registry);
-                }
-            }
-        }
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan(PACKAGE_TO_SCAN);
+        sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
 
-    public static void shutdown() {
-        if (registry != null) {
-            StandardServiceRegistryBuilder.destroy(registry);
-        }
+    @Bean(name = "dataSource")
+    public DataSource dataSource() {
+        log.info("-----------------------------------------");
+        log.info("----------ACTIVE SPRING PROFILE----------");
+        log.info("-------------------DEFAULT------------------");
+        log.info("-----------------------------------------");
+        DriverManagerDataSource ds = new DriverManagerDataSource();
+        ds.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
+        ds.setUrl(environment.getRequiredProperty("jdbc.url"));
+        ds.setUsername(environment.getRequiredProperty("jdbc.username"));
+        ds.setPassword(environment.getRequiredProperty("jdbc.password"));
+        return ds;
+    }
+
+    private Properties hibernateProperties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
+        properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
+        properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
+        properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.generate_statistics",
+                environment.getRequiredProperty("hibernate.generate_statistics"));
+        return properties;
+    }
+
+    @Bean
+    @Autowired
+    public HibernateTransactionManager transactionManager(SessionFactory s) {
+        HibernateTransactionManager txManager = new HibernateTransactionManager();
+        txManager.setSessionFactory(s);
+        return txManager;
     }
 }
