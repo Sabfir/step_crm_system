@@ -19,7 +19,8 @@
         <hsqldb.version>2.3.2</hsqldb.version>
         <jackson-core.version>2.8.6</jackson-core.version>
         <org.projectlombok.version>1.16.14</org.projectlombok.version>
-        <junit-version>4.7</junit-version>
+        <junit.version>4.12</junit.version>
+        <rest-assured.version>3.0.2</rest-assured.version>
     </properties>
     <dependencies>
         <!-- spring-core -->
@@ -124,7 +125,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit-version}</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- mockito-all -->
@@ -132,6 +133,33 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- rest assured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- rest-assured-spring-mock-mvc -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>spring-mock-mvc</artifactId>
+            <version>${rest-assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- jsonassert -->
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>1.5.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
